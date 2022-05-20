@@ -1,0 +1,74 @@
+<div class="container">
+    <h3 class="text-center">User SignUp</h3>
+    <img src="../../assets/images/Singup.svg" alt="" class="d-block mx-auto w-25 my-3">
+    <!-- invalid credentials error message -->
+    <h5 *ngIf="errStatus" class="text-center text-danger">{{errMessage}}</h5>
+    
+    <!-- Forms -->
+    <form [formGroup]="userFormInfo" #ref="ngForm" class="col-10 col-sm-8 col-md-8 mx-auto mb-3" (ngSubmit)="onFormSubmit()">
+        
+        
+        <!-- Username input -->
+        <div class="form-floating my-3">
+            <input type="text" class="form-control" id="floatingInput" placeholder="name" formControlName="username">
+            <label for="floatingInput">Username</label>
+        </div>
+        <!--Validation-->
+        <div class="text-danger" *ngIf="username.invalid&&(username.dirty||username.touched)||ref.submitted">
+            <p *ngIf="username.errors?.['required']">
+                *Username required
+            </p>
+        </div>
+        
+        <!-- Password input -->
+        <div class="form-floating">
+            <input type="password" class="form-control" id="floatingPassword" placeholder="Password" formControlName="password">
+            <label for="floatingPassword">Password</label>
+        </div>
+        <!--Validation-->
+        <div class="text-danger" *ngIf="password.invalid&&(password.dirty||password.touched)||ref.submitted">
+            <p *ngIf="password.errors?.['required']">
+                *Password required
+            </p>
+        </div>
+
+        <!-- Email -->
+        <div class="form-floating my-3">
+            <input type="email" class="form-control" id="emailFloatingInput" placeholder="name@example.com" formControlName="email">
+            <label for="emailFloatingInput">Email address</label>
+        </div>
+          
+        <!--Validation-->
+        <div class="text-danger" *ngIf="email.invalid&&(email.dirty||email.touched)||ref.submitted">
+            <p *ngIf="email.errors?.['required']">
+                *Email required
+            </p>
+        </div>
+
+
+        <!-- City -->
+        <div class="form-floating">
+            <input type="text" class="form-control" id="floatingCity" placeholder="Password" formControlName="city">
+            <label for="floatingCity">City</label>
+          </div>
+        <!--Validation-->
+        <div class="text-danger" *ngIf="city.invalid&&(city.dirty||city.touched)||ref.submitted">
+            <p *ngIf="city.errors?.['required']">
+                *City required
+            </p>
+        </div>
+
+        <!-- File -->
+        <div class="form-floating mt-3 mb-3">
+            <input type="file" class="form-control" id="filefloatingInput" formControlName="profilePic" (change)="onFileSelect($event)">
+            <!-- <label for="filefloatingInput">Choose Profile pic</label> -->
+        </div>
+
+        <!-- Submit button -->
+        <button type="submit" class="btn btn-sm btn-success mt-3 d-block mx-auto">SignUp</button>
+
+        <!-- new user singup-->
+        <h6 class="text-center mt-3">Already registered, <a class="nav-link" routerLink="/login">Login</a> here</h6>
+    </form>
+   
+</div>

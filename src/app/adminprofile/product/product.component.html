@@ -1,0 +1,93 @@
+<div class="container">
+    <h1 class="text-center">Create Product</h1>
+<hr>
+
+<!-- invalid credentials error message -->
+<h5 *ngIf="errStatus" class="text-center text-danger">{{errMessage}}</h5>
+
+<div class="row">
+    
+    <form [formGroup]="productForm" #ref="ngForm" class="col-10 col-sm-8 col-md-6 mx-auto mt-3" (ngSubmit)="onFormSubmit()">
+        <div class="form-floating my-3">                   
+            <input type="number" id="productId" class="form-control" formControlName="productId">
+            <label for="productId">Product ID</label>  
+        </div>
+        
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="floatingInput" formControlName="productName">
+            <label for="floatingInput">Product Name</label>
+        </div>
+        
+        <div class="form-floating mb-3">
+            <input type="text" name="price" class="form-control" id="price" formControlName="price">
+            <label for="price">Price</label>
+        </div>
+        
+        <div class="form-floating mb-3">
+            <textarea name="" rows="5" id="description" class="form-control" formControlName="description"></textarea>
+            <label for="description">Description</label>
+        </div>
+        
+        <div class="form-floating mb-3">
+            <input type="file" name="" id="image" class="form-control" formControlName="productImage" (change)="onImageSelect($event)">
+            <label for="image">Product Image</label>            
+        </div>
+        
+        <button type="submit" class="btn btn-sm btn-success d-block mx-auto mb-3">Create Product</button>
+
+        
+    </form>
+    <button type="submit" class="btn btn-sm btn-info d-block mx-auto" (click)="getProducts()">View Products</button>
+    <h1 class="text-center">View Products</h1>
+    <hr>
+    
+    <div class="card col-10 col-sm-4 col-md-3 col-lg-4 mx-auto mb-3" *ngFor="let product of allProducts;let i=index">
+        <span><button type="submit" class="btn btn-sm btn-danger float-end fw-bold" style="border-radius:50% ;" (click)="deleteUser(product.productId)">X</button></span>
+        <img src="{{product.productImage}}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">{{product.productName}}</h5>
+          <h6 class="card-title">Price: {{product.price}}$</h6>
+          <p class="card-text">Description: {{product.description}}</p>
+          <p class="card-text">Product ID: {{product.productId}}</p>
+          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+          <button type="submit" class="btn btn-sm btn-primary" (click)="editProduct(i,product)">Edit</button>
+        </div>
+    </div>
+
+    <form [formGroup]="productForm" #ref="ngForm" class="col-10 col-sm-8 col-md-6 mx-auto mt-3" (ngSubmit)="saveproduct()">
+    <table>
+        <tbody>
+            <tr *ngFor="let product of allProducts;let i=index">
+                <td>
+                    <span *ngIf="!editProductStatus||editProductIndex!==i">{{product.productName}}</span>
+                    <input *ngIf="editProductStatus&&editProductIndex==i" type="text" formControlName="productName">
+                </td>
+                <td>
+                    <span *ngIf="!editProductStatus||editProductIndex!==i">{{product.productId}}</span>
+                    <input *ngIf="editProductStatus&&editProductIndex==i" type="number" formControlName="productId">
+                </td>
+                <td>
+                    <span *ngIf="!editProductStatus||editProductIndex!==i">{{product.price}}</span>
+                    <input *ngIf="editProductStatus&&editProductIndex==i" type="number" formControlName="price">
+                </td>
+                <td>
+                    <span *ngIf="!editProductStatus||editProductIndex!==i">{{product.description}}</span>
+                    <input *ngIf="editProductStatus&&editProductIndex==i" type="text" formControlName="description">
+                </td>
+                <td>
+                    <span ><img src="{{product.productImage}}" *ngIf="!editProductStatus||editProductIndex!==i" class="card-img-top" alt="..."></span>
+                    <input *ngIf="editProductStatus&&editProductIndex==i" type="file" name="" id="image" (change)="onImageSelect($event)" class="form-control" formControlName="productImage">
+                </td>
+                <span *ngIf="!editProductStatus||editProductIndex!==i">
+                    <button class="btn btn-sm btn-primary" (click)="editProduct(i,product)">Edit</button>
+                </span>
+
+                <span *ngIf="editProductStatus&&editProductIndex==i">
+                    <td><button type="submit" class="btn btn-success">Save</button></td>
+                </span>
+            </tr>
+        </tbody>
+    </table>
+</form>
+</div>
+</div>

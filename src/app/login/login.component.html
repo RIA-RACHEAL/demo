@@ -1,0 +1,54 @@
+<div class="container">
+    <h3 class="text-center">User Login</h3>
+    <img src="../../assets/images/login.svg" alt="Invalid" class="d-block mx-auto mt-3 w-25 mb-3">
+    <!-- invalid credentials error message -->
+    <h5 *ngIf="errStatus" class="text-center text-danger">{{errMessage}}</h5>
+    
+    <!-- Forms -->
+    <form [formGroup]="loginDetails" #ref="ngForm" class="col-10 col-sm-8 col-md-8 mx-auto mb-3" (ngSubmit)="onFormSubmit()">
+        
+        <!-- Radio button -->
+        <input type="radio" value="user" name="usertype" class="form-check-input" id="user" formControlName="usertype">
+        <label for="user" class="form-check-label me-4">User</label>
+
+        <input type="radio" value="admin" name="usertype" class="form-check-input" id="admin" formControlName="usertype">
+        <label for="admin" class="form-check-label">Admin</label>
+        <!-- Validation -->
+        <div class="text-danger" *ngIf="usertype.invalid&&(usertype.dirty||usertype.touched)||ref.submitted">
+            <p *ngIf="usertype.errors?.['required']">
+                *Please enter the Usertype
+            </p>
+        </div>
+        
+        <!-- Username input -->
+        <div class="form-floating mt-3 mb-3">
+            <input type="text" class="form-control" id="floatingInput" placeholder="name" formControlName="username">
+            <label for="floatingInput">Username</label>
+        </div>
+        <!--Validation-->
+        <div class="text-danger" *ngIf="username.invalid&&(username.dirty||username.touched)||ref.submitted">
+            <p *ngIf="username.errors?.['required']">
+                *Please enter the Username
+            </p>
+        </div>
+        
+        <!-- Password input -->
+        <div class="form-floating">
+            <input type="password" class="form-control" id="floatingPassword" placeholder="Password" formControlName="password">
+            <label for="floatingPassword">Password</label>
+          </div>
+        <!--Validation-->
+        <div class="text-danger" *ngIf="password.invalid&&(password.dirty||password.touched)||ref.submitted">
+            <p *ngIf="password.errors?.['required']">
+                *Please enter the Password
+            </p>
+        </div>
+
+        <!-- Submit button -->
+        <button type="submit" class="btn btn-sm btn-info mt-3 d-block mx-auto">Login</button>
+
+        <!-- new user singup-->
+        <h6 class="text-center mt-3">New User, <a class="nav-link" routerLink="/sign-up" routerLinkActive="active">SignIp</a> here</h6>
+    </form>
+   
+</div>
