@@ -1,5 +1,6 @@
 //create mini express app(user app)
 const exp=require("express")
+const userApp=exp.Router();
 const {getUsers,
         getUserByUsername, 
         createUser, 
@@ -38,7 +39,7 @@ const cloudStorage = new CloudinaryStorage({
 const upload = multer({storage:cloudStorage})
 
 
-const userApp=exp.Router();
+
 //Create USER API
 
 //get users

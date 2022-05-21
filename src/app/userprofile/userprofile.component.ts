@@ -40,8 +40,21 @@ export class UserprofileComponent implements OnInit {
   }
 
   addCart(username,cartProuct){
-    console.log("name",username)
-    console.log("Cart",cartProuct);
+    // console.log("name",username)
+    // console.log("Cart",cartProuct);
+    let cartObj={
+      username:username,
+      products:[cartProuct]
+    }
+    console.log(cartObj);
+    this.us.addCart(cartObj).subscribe({
+      next:(res)=>{
+        console.log(res)
+      },
+      error:(err)=>{
+        console.log("cart error",err)
+      }
+    })
   }
 
 }

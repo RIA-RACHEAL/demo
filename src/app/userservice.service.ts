@@ -33,4 +33,8 @@ export class UserserviceService {
   deleteProductbyId(id):Observable<any>{
     return this.hc.delete(`/admin//delete/${id}`);
   }
+
+  addCart(cartObj):Observable<any>{
+    return this.hc.post('/cart/create-cart',cartObj)
+  }
 }

@@ -21,9 +21,11 @@ mongoClient.connect(dburl)
     //get collecetion objects
     let userCollectionObject=databaseObject.collection("usercollection");
     let productCollectionObject=databaseObject.collection("productcollection")
+    let cartCollectionObject=databaseObject.collection("cartcollection");
     //share collection objects to APIs
     app.set("userCollectionObject",userCollectionObject)
     app.set("productCollectionObject",productCollectionObject)
+    app.set("cartCollectionObject",cartCollectionObject)
 
     console.log("Connected to DB succesfully")
 })
@@ -33,6 +35,7 @@ mongoClient.connect(dburl)
 //import apis
 const userApp=require("./backend/APIs/userAPI")
 const adminApp=require("./backend/APIs/adminAPI")
+const cartApp=require('./backend/APIs/cartAPI')
 
 //add body par
 app.use(exp.json())
@@ -42,6 +45,9 @@ app.use('/user',userApp)
 
 //if path is admin, then execute adminAPIs
 app.use('/admin',adminApp)
+
+//if path is admin, then execute adminAPIs
+app.use('/cart',cartApp)
 
 app.use('/',(req,res)=>{
     res.sendFile(path.join(__dirname,'./dist/mean-app/index.html'),err=>{
