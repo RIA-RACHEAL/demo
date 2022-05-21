@@ -26,7 +26,7 @@ const createProduct = expressAsyncHandler(async(req,res)=>{
     //consolo.log(req.body)
     //get new product obj
     let productObj = JSON.parse(req.body.productObj);
-    console.log(productObj);
+    //console.log(productObj);
     //add image CDN link to userObj
     productObj.productImage=req.file.path;
 
@@ -69,10 +69,10 @@ const updateProduct = expressAsyncHandler(async(req,res)=>{
         //console.log(req.body)
         //get modifies user obj
         let modifiedProductObj=req.body;
-        console.log(modifiedProductObj)
+        //console.log(modifiedProductObj)
         //update userobj in usercollection
         let result=await productCollectionObject.updateOne({id:modifiedProductObj._id},{$set:{...modifiedProductObj}})
-        console.log(result)
+        //console.log(result)
         //send res
         if(result.modifiedCount==1){
             res.send({message:"User Modified successfully"})
@@ -90,10 +90,10 @@ const deleteProduct = expressAsyncHandler(async(req,res)=>{
     
     //get username from url
     let productFromUrl =   (+req.params.id);
-    console.log(productFromUrl)
+    //console.log(productFromUrl)
     //get user by id from usercollection
     let result = await productCollectionObject.deleteOne({productId:productFromUrl})
-    console.log(result)
+    //console.log(result)
     //send res
     if(result.deletedCount==1){
         res.status(204).send({message:"Product removed"})

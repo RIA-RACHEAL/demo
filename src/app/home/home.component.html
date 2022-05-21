@@ -12,7 +12,7 @@
       <h1 class="text-center">Products</h1>
     <hr>
     <div class="row">
-    <div class="card col-10 col-sm-5 col-md-4 col-lg-4 mx-auto mb-3" *ngFor="let product of allProducts;let i=index">
+    <div class="card row-col-10 col-sm-5 col-md-4 col-lg-4 mx-auto mb-3" *ngFor="let product of allProducts;let i=index">
         <img src="{{product?.productImage}}" width="10vw" height="300vw" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title fw-bold">{{product?.productName}}</h5>

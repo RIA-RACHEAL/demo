@@ -19,9 +19,7 @@ export class ProductComponent implements OnInit {
   editProductIndex:number;
   id:number;
 
-  constructor(private fb:FormBuilder,private us:UserserviceService,private router:Router) {
-    
-   }
+  constructor(private fb:FormBuilder,private us:UserserviceService,private router:Router) {}
   
   ngOnInit(): void {
 
@@ -130,19 +128,24 @@ export class ProductComponent implements OnInit {
   }
 
   deleteUser(id){
-    console.log(id)
-    this.us.deleteProductbyId(id).subscribe({
-      next:(response)=>{
-        console.log(response)
-        //alert("User removed")
-        //this.getUsersList()
-        //update count
-        //this.us.updateProductCountObservable(this.us.getCurrentProductCount()-1)
-      },
-      error:(error)=>{
-        console.log("err is ",error)
-      }
-    })
+    //console.log(id)
+    if(confirm("Are you sure to delete")) {
+      //console.log("Implement delete functionality here");
+      
+      this.us.deleteProductbyId(id).subscribe({
+        next:(response)=>{
+          alert("User removed");
+        }
+        ,
+        error:(error)=>{
+          console.log("err is ",error)
+        }
+      })
+      
+    }
+    else{
+      alert("User not removed")
+    }
   }
 
 }

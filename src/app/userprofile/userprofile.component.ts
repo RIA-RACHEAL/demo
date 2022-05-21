@@ -8,12 +8,13 @@ import { UserserviceService } from '../userservice.service';
   styleUrls: ['./userprofile.component.scss']
 })
 export class UserprofileComponent implements OnInit {
-
+  allProducts;
   user;
   constructor(private authService:AuthenticationService,private us:UserserviceService) { }
 
   ngOnInit(): void {
   this.user=this.authService.currentUser;
+  this.getProducts();
   }
 
   getProtected(){
@@ -22,6 +23,25 @@ export class UserprofileComponent implements OnInit {
         alert(res.message)
       }
     })
+  }
+  
+  private getProducts(){
+    this.us.getProduct().subscribe({
+      next:(products)=>{
+        //console.log(products);
+        //console.log("Products",products['payload']);
+        this.allProducts=products['payload'];
+        //console.log(this.allProducts[0].productName)
+      },
+      error:(err)=>{
+        console.log("err",err);
+      }
+    })
+  }
+
+  addCart(username,cartProuct){
+    console.log("name",username)
+    console.log("Cart",cartProuct);
   }
 
 }
