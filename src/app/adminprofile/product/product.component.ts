@@ -134,7 +134,7 @@ export class ProductComponent implements OnInit {
       
       this.us.deleteProductbyId(id).subscribe({
         next:(response)=>{
-          alert("User removed");
+          alert("Product removed");
         }
         ,
         error:(error)=>{
@@ -144,7 +144,7 @@ export class ProductComponent implements OnInit {
       
     }
     else{
-      alert("User not removed")
+      alert("Product not removed")
     }
   }
 

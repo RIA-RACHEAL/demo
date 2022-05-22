@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 
 import { UserprofileRoutingModule } from './userprofile-routing.module';
 import { UserprofileComponent } from './userprofile.component';
+import { ViewcartComponent } from './viewcart/viewcart.component';
 
 
 @NgModule({
   declarations: [
-    UserprofileComponent
+    UserprofileComponent,
+    ViewcartComponent
   ],
   imports: [
     CommonModule,

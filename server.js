@@ -46,7 +46,7 @@ app.use('/user',userApp)
 //if path is admin, then execute adminAPIs
 app.use('/admin',adminApp)
 
-//if path is admin, then execute adminAPIs
+//if path is admin, then execute cartAPIs
 app.use('/cart',cartApp)
 
 app.use('/',(req,res)=>{

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthenticationService } from '../authentication.service';
 import { UserserviceService } from '../userservice.service';
 
@@ -9,8 +10,11 @@ import { UserserviceService } from '../userservice.service';
 })
 export class UserprofileComponent implements OnInit {
   allProducts;
+  cartProduct;
   user;
-  constructor(private authService:AuthenticationService,private us:UserserviceService) { }
+  constructor(private authService:AuthenticationService,
+                private us:UserserviceService,
+                private router:Router) { }
 
   ngOnInit(): void {
   this.user=this.authService.currentUser;
@@ -39,22 +43,27 @@ export class UserprofileComponent implements OnInit {
     })
   }
 
-  addCart(username,cartProuct){
+  addCart(username,cartProduct){
     // console.log("name",username)
     // console.log("Cart",cartProuct);
     let cartObj={
       username:username,
-      products:[cartProuct]
+      products:[cartProduct]
     }
-    console.log(cartObj);
+    //console.log(cartObj);
     this.us.addCart(cartObj).subscribe({
       next:(res)=>{
-        console.log(res)
+        // console.log(res)
+        alert("Added to cart successfully")
       },
       error:(err)=>{
         console.log("cart error",err)
       }
     })
+  }
+
+  viewCart(username){
+    this.router.navigateByUrl(`/userprofile/viewcart/${username}`)
   }
 
 }
