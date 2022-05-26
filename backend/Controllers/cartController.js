@@ -43,7 +43,7 @@ const viewCart=expressAsyncHandler(async(req,res)=>{
     let usernameOfUrl =   req.params.username;
     // console.log("user",usernameOfUrl)
     //get user by id from usercollection
-    let user = await cartCollectionObject.findOne({username:usernameOfUrl})
+    let cart = await cartCollectionObject.findOne({username:usernameOfUrl})
     //send res
     res.status(200).send({message:"List of products" ,payload:cart})
 })

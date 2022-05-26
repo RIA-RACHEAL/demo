@@ -6,7 +6,7 @@
         style="border-radius: 50%;">
     </h6>
     <div>
-        <button type="submit" class="cart-btn btn btn-sm float-end mt-3 btn-primary" (click)="viewCart(user?.username)"><i class="fa-solid fa-cart-arrow-down p-1"></i></button>
+        <button type="submit" class="cart-btn btn btn-sm float-end mt-3 btn-primary" (click)="viewCart(user?.username)"><i class="fa-solid fa-cart-arrow-down p-1"></i>{{cartCount}}</button>
     </div>
     <!-- <button class="btn btn-sm btn-info" (click)="getProtected()">Get Protected data</button> -->
     <h1 class="text-center">Products</h1>
